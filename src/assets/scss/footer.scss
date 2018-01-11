@@ -1,0 +1,97 @@
+@import "definiciones";
+// footer
+.footer {
+  h1 {
+    color: $azul_claro;
+    margin-bottom: $enano;
+    padding: 0;
+    font-size: 2.7em;
+    &.lema:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+    &.lema {
+      margin-bottom: 0;
+      margin-top: 2em;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 2.2em;
+      color: $azul_uva_oficial;
+    }
+    &.sublema {
+      margin: 0;
+      color: $rojo_uva_oficial;
+    }
+  }
+  h2 {
+    color: $rojo_uva_oficial;
+    font: 28px Arial;
+  }
+  h3 {
+    color: $rojo_uva_oficial;
+    font: bold 3em Arial;
+    margin: 0;
+    padding: 0;
+  }
+  p {
+    margin: 0;
+  }
+  .mapa {
+    .tabs {
+      width: 100%;
+      ul, li {
+        margin: 0;
+        padding: 0;
+      }
+      ul {
+        width: 100%;
+        margin: 0 auto;
+
+      }
+      li {
+        font: 1.2em Arial;
+        float: left;
+        list-style-type: none;
+        background-color: white;
+        padding: 5px 18px;
+        margin-top: 20px;
+        border-top: 2px solid white;
+        a {
+          color: $rojo_claro;
+        }
+      }
+      li.active, li:hover {
+        padding: 5px 18px;
+        border-top: 2px solid $rojo_uva_oficial;
+        background: url("../img/footer/triangulo_active.png") no-repeat 50% 0% white;
+        a {
+          color: $rojo_uva_oficial;
+        }
+        a:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    #gmaps {
+      border: 1px solid $gris;
+      width: 345px;
+    }
+  }
+}
+
+.aviso_legal {
+  margin-top: $mediano;
+  h2 {
+    font-size: 0.7em;
+    color: white;
+    font: bold 1.2em Arial;
+    margin-bottom: $enano;
+    margin-top: $enano;
+  }
+  p {
+    color: white;
+    font-size: 0.9em !important;
+  }
+}

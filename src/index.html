@@ -1,14 +1,93 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Consultasmedicasangular</title>
-  <base href="/">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/icon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/icon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/icon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/icon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/icon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/icon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/icon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/icon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="assets/icon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/icon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon/favicon-16x16.png">
+  <link rel="manifest" href="assets/icon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="assets/icon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <title>Universidad de Valladolid - Directorio</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <base href="/">
+  <link rel="stylesheet" type="text/css" href="assets/css/foundation-icons/foundation-icons.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+
 </head>
 <body>
-  <app-root></app-root>
+  <!-- Cabcecera -->
+  <div class="row">
+    <div class="columns small-12 fondo_azul_oscuro texto_blanco cabecera">
+      <div class="row align-middle">
+        <div class="columns small-12 large-3">
+          <a href="http://www.uva.es" role="link"><i class="fi-home"></i> Principal UVa</a>
+        </div>
+        <div class="columns small-12 large-6">
+          <center><h2><strong>Universidad</strong> de <strong>Valladolid</strong> <small>consultas médicas</small></h2></center>
+        </div>
+        <div class="columns small-12 large-3">
+          <a href="http://directorio.uva.es" role="link"><i class="fi-torsos-all"></i> Directorio</a>
+          <a href="https://miportal.uva.es" role="link"><i class="fi-torso"></i> Mi Portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <consultasmedicas-root></consultasmedicas-root>
+  <footer class="footer fondo_marron">
+	<!-- footer -->
+		<div class="row" style="padding-top: 10px;">
+			<!-- 1 linea -->
+			<div class="columns small-12 medium-2">
+				<h2>Estudios</h2>
+				<p><a href="http://www.uva.es/2.docencia/2.01.grados/2.01.02.ofertaformativagrados/2.01.02.01.alfabetica/index.html" role="link">Estudios de Grados de la UVa</a></p>
+				<p><a href="http://www.uva.es/2.docencia/2.02.mastersoficiales/2.02.01.ofertaeducativa/2.02.01.01.alfabetica/index.html" role="link">Estudios de Master</p>
+				<p><a href="http://www.uva.es/2.docencia/2.03.titulospropios/2.03.01.ofertaformativamasterespropios/">Titulos Propios</a></p>
+				<p><a href="http://www.uva.es/2.docencia/2.04.doctorado/2.04.01.ofertaprogramasdoctorado/index.html" role="link">Estudios de Doctorado</a></p>
+			</div>
+			<div class="columns small-12 medium-2">
+				<h2>Te interesa</h2>
+				<p><a href="http://spanishinvalladolid.com/" role="link">Español en Valladolid</a></p>
+				<p><a href="http://www.uva.es/2.docencia/2.05.cursos/2.05.01.cursos/" role="link">Cursos de Formaci&oacute;n</a></p>
+			</div>
+			<div class="columns small-12 medium-2">
+				<h2>Descubre</h2>
+				<p><a href="http://biblioteca.uva.es/export/sites/biblioteca/" role="link">Bibliotecas Universitarias</a></p>
+				<p><a href="http://iee.blogs.uva.es/" role="link">IEE</a></p>
+				<p><a href="http://www.parquecientificouva.es/" role="link">Parque Cient&iacute;ficos</a></p>
+				<p><a href="http://funge.uva.es/idiomas/" role="link">Centro de Idiomas</a></p>
+				<p><a href="http://www.uva.es/6.vidauniversitaria/6.01.cultura/6.01.05.museos/index.html" role="link">Museo</a></p>
+			</div>
+			<div class="columns small-12 medium-2">
+				<h2>Participa</h2>
+				<p><a href="http://deportes.uva.es" role="link">Deportes</a></p>
+				<p><a href="http://buendia.uva.es" role="link">Centro Buendia</a></p>
+				<p><a href="http://www.uva.es/6.vidauniversitaria/6.04.gabinetemedico/index.html" role="link">Gabinete M&eacute;dico</a></p>
+				<p><a href="http://www.uva.es/6.vidauniversitaria/6.16.asociaciones/" role="link">Asociaciones</a></p>
+			</div>
+			<div class="columns small-12 medium-4">
+				<h1 class="lema" style="letter-spacing: -1px; color: #00bdd4; text-shadow: 1px 1px 3px #2b2b2b; display: inline-block; vertical-align: middle;">800 a&ntilde;os de innovaci&oacute;n</h1>
+				<h1 class="sublema" style="text-shadow: 1px 1px 3px #2b2b2b; color: #ef2862; margin: 0;">Sapientia Aedificavit Sibi Domvum</h1>
+			</div>
+		</div>
+	<!-- aviso legal -->
+		<div class="aviso_legal fondo_gris_oscuro">
+				<h2 class="text-center">UNIVERSIDAD de VALLADOLID // Palacio de Santa Cruz, 47002 Valladolid (España)</h2>
+				<p class="text-center">Los contenidos suministrados por la web están sujetos a los derechos de propiedad intelectual e industrial y son titularidad exclusiva de Universidad de Valladolid. La adquisición de algún producto o servicio no confiere al adquiriente ningún derecho de alteración, explotación, reproducción o distribución del mismo fuera de lo estrictamente contratado reservándose Universidad de Valladolid todos los derechos.</p>
+		</div>
+	</footer>
 </body>
 </html>

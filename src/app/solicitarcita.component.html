@@ -1,0 +1,236 @@
+<!-- Progreso -->
+<div *ngIf="progreso" id="progressbar" class="progress" role="progressbar" tabindex="0" aria-valuenow="20" aria-valuemin="0" aria-valuetext="" aria-valuemax="100">
+  <span class="progress-meter" [style.width]="progreso.porcentaje">
+    <p class="progress-meter-text">{{progreso.texto}}</p>
+  </span>
+</div>
+
+<!-- Spinner -->
+<div *ngIf="spinner"  class="grid-container">
+  <div class="grid-x grid-padding-x ">
+    <div class="cell">
+      <p>Cargando datos... Espere por favor</p>
+    </div>
+  </div>
+</div>
+
+<!-- Desplegable gabinetes -->
+<div  *ngIf="progreso.paso == 1" class="grid-container">
+  <div *ngIf="datos" class="grid-x grid-padding-x ">
+    <div class="cell">
+      <label>Seleccione el gabinete médico en el que desea solicitar cita  </label>
+      <select [(ngModel)]="gabinete">
+        <option *ngFor="let gabinete of datos.gabinetes" [ngValue]="gabinete">
+          {{gabinete.nombre}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <!-- Datos del gabinete -->
+  <div *ngIf="gabinete" class="grid-x grid-padding-x ">
+    <div class="cell">
+      <div class="card">
+        <div class="card-divider">
+          <h4>{{gabinete.nombre}}</h4>
+        </div>
+        <div class="card-section">
+          <p>Localización</p>
+          <p>{{gabinete.localizacion}}</p>
+        </div>
+        <div class="card-section">
+          <p>Contacto</p>
+          <p>{{gabinete.email}}</p>
+          <p>{{gabinete.telefono}}</p>
+        </div>
+        <div class="card-section">
+          <p>Horario de atención</p>
+          <p>
+            <span *ngIf="gabinete.weekdaymon == 1">L</span>
+            <span *ngIf="gabinete.weekdaytue == 1">M</span>
+            <span *ngIf="gabinete.weekdaywed == 1">X</span>
+            <span *ngIf="gabinete.weekdaythu == 1">J</span>
+            <span *ngIf="gabinete.weekdayfri == 1">V</span>
+            <span *ngIf="gabinete.weekdaysat == 1">S</span>
+            <span *ngIf="gabinete.weekdaysun == 1">D</span>
+          </p>
+          <p>{{gabinete.horainicio}}-{{gabinete.horafin}}</p>
+        </div>
+        <div class="card-section">
+          <h1>MAPA</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Huecos del gabinete -->
+<div *ngIf="progreso.paso == 2 && huecos"  class="grid-container">
+  <div class="grid-x grid-padding-x ">
+    <div class="cell">
+      <h3>Pulsa en la hora que deseas para la cita</h3>
+    </div>
+  </div>
+  <div *ngFor="let dia of huecos" class="grid-x grid-padding-x ">
+    <div class="cell small-12">
+      <p>{{dia.dia}}</p>
+    </div>
+    <div *ngFor="let dia of huecos">
+      <div *ngFor="let hueco of dia.huecos" >
+        <p (click)="onSelectFecha(dia,hueco)">{{hueco.horastr}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Datos de la cita -->
+<div *ngIf="progreso.paso == 3 && hueco" class="grid-container">
+  <div class="grid-x grid-padding-x ">
+    <div class="cell">
+      <h4>Rellene los siguientes datos</h4>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x ">
+    <form class="form-horizontal" [formGroup]="datosForm" (ngSubmit)="onFormSubmit()" >
+    <div class="medium-6 cell">
+      <label>NIF/NIE/Pasaporte
+        <input type="text" id="nif" name="nif" placeholder=".medium-6.cell" formControlName = "nif">
+      </label>
+      <p class="help-text" id="nif" *ngIf="(nif.invalid && nif.touched)">
+        Error en el NIF
+      </p>
+    </div>
+    <div class="medium-6 cell">
+      <label>Nombre
+        <input type="text" id="nombre" name="nombre" placeholder=".medium-6.cell" formControlName = "nombre">
+      </label>
+      <p class="help-text" id="nombre" *ngIf="(nombre.invalid && nombre.touched)">
+        Error en el nombre
+      </p>
+    </div>
+    <div class="medium-6 cell">
+      <label>Apellidos
+        <input type="text" id="apellidos" name="apellidos" placeholder=".medium-6.cell" formControlName = "apellidos">
+      </label>
+      <p class="help-text" id="apellidos" *ngIf="(apellidos.invalid && apellidos.touched)">
+        Error en los apellidos
+      </p>
+    </div>
+    <div class="medium-6 cell">
+      <label>Teléfono de contacto
+        <input type="text" id="telefono" name="telefono" placeholder=".medium-6.cell" formControlName = "telefono">
+      </label>
+      <p class="help-text" id="telefono" *ngIf="(telefono.invalid && telefono.touched)">
+        Error en el teléfono
+      </p>
+    </div>
+    <div class="medium-6 cell">
+      <label>Correo electrónico de contacto
+        <input type="text" id="email" name="email" placeholder=".medium-6.cell" formControlName = "email">
+      </label>
+      <p class="help-text" id="email" *ngIf="(email.invalid && email.touched)">
+        Error en el correo electrónico
+      </p>
+    </div>
+    <div class="medium-6 cell">
+      <label>Motivo de la cita (opcional)
+        <textarea placeholder="None" id="motivo" name="motivo" formControlName = "motivo" ></textarea>
+      </label>
+      <p class="help-text" id="motivo" *ngIf="(motivo.invalid && motivo.touched)">
+        Error en el motivo
+      </p>
+    </div>
+    <div>
+      <p>Form value {{ datosForm.value | json }} </p>
+      <p> Form status {{ datosForm.status | json}} </p>
+    </div>
+    <div>
+      <button type="button" class="button primary" (click)="onAnteriorToHuecos()">Anterior</button>
+      <button type="submit" class="button primary" [disabled]="!datosForm.valid" >Siguiente</button>
+    </div>
+  </form>
+  </div>
+</div>
+
+<!-- Resumen de la cita -->
+<div *ngIf="progreso.paso == 4 && formulario"  class="grid-container">
+  <div class="grid-x grid-padding-x ">
+    <div class="cell">
+      <h4>Resumen de la cita</h4>
+      <p>Compruebe la información y si está correcto pulse Confirmar</p>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x ">
+    <div class="card">
+      <div class="card-divider">
+        <h4>{{gabinete.nombre}}</h4>
+      </div>
+      <div class="card-section">
+        <p>Localización</p>
+        <p>{{gabinete.localizacion}}</p>
+      </div>
+      <div class="card-section">
+        <p>Contacto</p>
+        <p>{{gabinete.email}}</p>
+        <p>{{gabinete.telefono}}</p>
+      </div>
+      <div class="card-section">
+        <h1>MAPA</h1>
+      </div>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x ">
+    <div class="cell">
+      <h4>Día {{hueco.dia}}</h4>
+      <h4>Hora {{hueco.horastr}}</h4>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x ">
+    <div class="cell">
+
+
+    </div>
+  </div>
+</div>
+
+<!-- Resultado de la cita -->
+<div *ngIf="progreso.paso == 5 && resultado"  class="grid-container">
+  <div class="grid-x grid-padding-x ">
+    <div class="cell">
+      <img *ngIf="resultado.status == 0" src="/assets/img/acceptation.png">
+      <img *ngIf="resultado.status == 1" src="/assets/img/error.png">
+      <!-- <a href="" class="button">Detalle de la cita</a> -->
+      <p *ngIf="resultado.status == 0">Gracias por usar el servicio de cita previa</p>
+      <p *ngIf="resultado.status == 1">{{resultado.error}}</p>
+
+      <button type="button" class="button primary" (click)="onAnteriorToResumen()">Anterior</button>
+      <a *ngIf="resultado.status == 1" href="/" class="button">Inicio</a>
+    </div>
+  </div>
+</div>
+
+<!-- PASO 1. seleccionar gabinete -->
+<div *ngIf="progreso.paso == 1" class="grid-x grid-padding-x ">
+  <div class="cell">
+    <button id="siguientetohuecos" type="button" class="button primary" [disabled]="!gabinete" (click)="onSelectGabineteToHuecos()">Siguiente</button>
+  </div>
+</div>
+
+<!-- PASO 2. Seleccionar huecos -->
+<div *ngIf="progreso.paso == 2" class="grid-x grid-padding-x ">
+  <div class="cell">
+    <button id="anteriortogabinete" type="button" class="button primary" (click)="onAnteriorToGabinete()">Anterior</button>
+    <button id="siguientetodatos" type="button" class="button primary" [disabled]="!hueco" (click)="onSelectHuecoToDatos()">Siguiente</button>
+  </div>
+</div>
+
+<!-- PASO 3. completar datos EN FORMULARIO -->
+
+<!-- PASO 4. completar datos EN FORMULARIO -->
+<div *ngIf="progreso.paso == 4" class="grid-x grid-padding-x ">
+  <div class="cell">
+    <button #anteriortodatos type="button" class="button primary" (click)="onAnteriorToDatos()">Anterior</button>
+    <button  type="button" class="button primary" (click)="onConfirmarCita()">Solicitar cita</button>
+  </div>
+</div>
