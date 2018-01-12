@@ -1,3 +1,37 @@
-<p>
-  miscitas works!
-</p>
+<!-- Spinner -->
+<div *ngIf="spinner"  class="grid-container">
+  <div class="grid-x grid-padding-x ">
+    <div class="cell">
+      <p>Cargando datos... Espere por favor</p>
+    </div>
+  </div>
+</div>
+<!-- Listados -->
+<div *ngIf="citas" class="grid-container">
+  <div  class="grid-x grid-padding-x ">
+    <div class="cell">
+      <h3>Citas en los Gabinetes</h3>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x " *ngFor="let cita of citas">
+    <div class="cell">
+      <div class="card">
+        <div class="card-divider">
+          <h4>{{cita.nombre}}</h4>
+        </div>
+        <div class="card-section">
+          <p>{{cita.localizacion}}</p>
+          <p>{{cita.telefono}}</p>
+          <p>{{cita.email}}</p>
+        </div>
+        <div class="card-section">
+          <h4>Día de la cita</h4>
+          <p>{{cita.fecha}} de {{cita.start_time}} a {{cita.end_time}}</p>
+        </div>
+        <div class="card-section">
+          <button (click)="onAnularCita(cita)">Anular cita</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

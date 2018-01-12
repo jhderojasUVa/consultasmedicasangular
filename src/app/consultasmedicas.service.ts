@@ -9,7 +9,8 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ConsultasmedicasService {
-  private _dataIdUrl = 'http://localhost/consultasmedicasweb/index.php/ws/';
+  //private _dataIdUrl = 'http://albergueweb1.uva.es/consultasmedicasweb/index.php/ws/';
+  private _dataIdUrl = 'http://davidrod.uva.es/consultasmedicasweb/index.php/ws/';
 
 
   public lastSearch: String;
@@ -51,12 +52,40 @@ export class ConsultasmedicasService {
     })*/
   }
 
+  leerDatosSSO(): Promise<String> {
+    const url = `${this._dataIdUrl}/datos`;
+    console.log("--- leerDatosSSO url "+url);
+    return this._http.get(url).toPromise().then(response => {
+      return (response.json());
+    }).catch(this.handleError);;
+  }
+
+  leerCitas(): Promise<String> {
+    const url = `${this._dataIdUrl}/citas`;
+    console.log("--- leerCitas url "+url);
+    return this._http.get(url).toPromise().then(response => {
+      return (response.json());
+    }).catch(this.handleError);;
+  }
+
   sendCita(datos): Promise<String> {
     const url = `${this._dataIdUrl}/cita/`;
     console.log("--- sendCita url "+url);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let data=JSON.stringify(datos);
+    console.log(data);
+    return this._http.post(url, data, options).toPromise().then(response => {
+      return (response.json());
+    }).catch(this.handleError);;
+  }
+
+  anularCita(hash): Promise<String> {
+    const url = `${this._dataIdUrl}/anularcita/`;
+    console.log("--- anularCita url "+url);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let data={"hash":hash};
     console.log(data);
     return this._http.post(url, data, options).toPromise().then(response => {
       return (response.json());

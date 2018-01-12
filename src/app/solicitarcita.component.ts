@@ -38,16 +38,23 @@ export class SolicitarcitaComponent implements OnInit {
 
   private idgabinete;
   private hueco;
+  private datossso;
   private formulario;
   private resultado;
   datosForm: FormGroup;
-
-
 
   ngOnInit() {
     console.log("--> SolicitarcitaComponent.ngOnInit");
     //Leemos el nodo ráiz
     this.spinner=true;
+    this.service.leerDatosSSO().then(response => {
+      console.log("--> SolicitarcitaComponent response");
+      console.log(response);
+      if (response=="false") {
+         this.router.navigate(["/autenticar"])
+      }
+      this.datossso=response;
+    });
     this.service.leerDatos().then(response => {
       console.log("--> SolicitarcitaComponent response");
       console.log(response);
@@ -66,19 +73,14 @@ export class SolicitarcitaComponent implements OnInit {
         "porcentaje": "20%",
       }
     });
+
     //Tenemos algún parámetro
     this.idgabinete = this.route.snapshot.paramMap.get('idgabinete');
     console.log("--- idgabinete "+this.idgabinete);
 
-    //FOrmulario
-    this.datosForm = new FormGroup ({
-      nif: new FormControl('71124293J',[Validators.required, Validators.minLength(8)]),
-      nombre: new FormControl('Nombre',[Validators.required, Validators.minLength(3)]),
-      apellidos: new FormControl('Apellidos',[Validators.required, Validators.minLength(3)]),
-      telefono: new FormControl('983423000',[Validators.required, Validators.minLength(3),Validators.pattern('[0-9.())]+$')]),
-      email: new FormControl('david.rodriguez.merino@uva.es',[Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
-      motivo: new FormControl(''),
-    });
+    console.log(this.datossso);
+
+
     console.log("<-- SolicitarcitaComponent.ngOnInit");
   }
 
@@ -137,12 +139,24 @@ export class SolicitarcitaComponent implements OnInit {
 
   onSelectHuecoToDatos() {
     console.log("--> SolicitarcitaComponent.onSelectHuecoToDatos");
+
     if (this.hueco) {
+      //FOrmulario
+      this.datosForm = new FormGroup ({
+        nif: new FormControl(this.datossso.nif,[Validators.required, Validators.minLength(8)]),
+        nombre: new FormControl(this.datossso.name,[Validators.required, Validators.minLength(3)]),
+        apellidos: new FormControl('Apellidos',[Validators.required, Validators.minLength(3)]),
+        telefono: new FormControl(this.datossso.telefono,[Validators.required, Validators.minLength(3),Validators.pattern('[0-9.())]+$')]),
+        email: new FormControl(this.datossso.mail,[Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
+        motivo: new FormControl(''),
+      });
+
       this.progreso = {
         "paso": 3,
         "texto": "3. Datos de contacto",
         "porcentaje": "60%",
       }
+
       //Focus to input
       let el = this.renderer.selectRootElement('#progressbar');
       el.focus();
