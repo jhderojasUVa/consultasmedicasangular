@@ -197,15 +197,11 @@
 <!-- Resultado de la cita -->
 <div *ngIf="progreso.paso == 5 && resultado"  class="grid-container">
   <div class="grid-x grid-padding-x ">
+    <div class="cell" *ngIf="resultado.status == 0" [innerHtml]="datos.textos.citaasignada_text"></div>
+    <div class="cell" *ngIf="resultado.status == 1" [innerHtml]="datos.textos.nohaycita_text"></div>
     <div class="cell">
-      <img *ngIf="resultado.status == 0" src="/assets/img/acceptation.png">
-      <img *ngIf="resultado.status == 1" src="/assets/img/error.png">
-      <!-- <a href="" class="button">Detalle de la cita</a> -->
-      <p *ngIf="resultado.status == 0">Gracias por usar el servicio de cita previa</p>
-      <p *ngIf="resultado.status == 1">{{resultado.error}}</p>
-
-      <button type="button" class="button primary" (click)="onAnteriorToResumen()">Anterior</button>
-      <a *ngIf="resultado.status == 1" href="/" class="button">Inicio</a>
+      <a *ngIf="resultado.status == 0" href="/" class="button">Inicio</a>
+      <button *ngIf="resultado.status == 1" type="button" class="button primary" (click)="onAnteriorToResumen()">Anterior</button>
     </div>
   </div>
 </div>

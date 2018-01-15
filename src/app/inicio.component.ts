@@ -14,6 +14,8 @@ export class InicioComponent implements OnInit {
     private router: Router,
     private service: ConsultasmedicasService) { }
 
+@Output() textos: any;
+
   ngOnInit() {
     this.service.leerDatosSSO().then(response => {
       console.log("--> SolicitarcitaComponent response");
@@ -21,6 +23,11 @@ export class InicioComponent implements OnInit {
       if (response=="false") {
          this.router.navigate(["/autenticar"])
       }
+    });
+    this.service.leerDatos().then(response => {
+      console.log("--> InicioComponent response");
+      console.log(response);
+      this.textos=response;
     });
   }
 

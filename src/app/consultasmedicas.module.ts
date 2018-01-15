@@ -17,6 +17,7 @@ import { MiscitasComponent } from './miscitas.component';
 import { SolicitarcitaComponent } from './solicitarcita.component';
 import { GmapsComponent } from './gmaps.component';
 import { AutenticarComponent } from './autenticar.component';
+import { DetallecitaComponent } from './detallecita.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AutenticarComponent } from './autenticar.component';
     MiscitasComponent,
     SolicitarcitaComponent,
     GmapsComponent,
-    AutenticarComponent
+    AutenticarComponent,
+    DetallecitaComponent
   ],
   imports: [
     ConsultasmedicasRoutingModule,

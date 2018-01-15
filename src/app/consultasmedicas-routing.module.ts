@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {InicioComponent} from './inicio.component';
 import {MiscitasComponent} from './miscitas.component';
 import {SolicitarcitaComponent} from './solicitarcita.component';
+import {DetallecitaComponent} from './detallecita.component';
 import {AutenticarComponent} from './autenticar.component';
 
 const consultasmedicasRoutes: Routes = [
@@ -25,6 +26,11 @@ const consultasmedicasRoutes: Routes = [
   {
     path: 'solicitar/:idgabinete',
     component: SolicitarcitaComponent,
+    data: { title: 'Consultas Médicas' }
+  },
+  {
+    path: 'detalle/:idcita',
+    component: DetallecitaComponent,
     data: { title: 'Consultas Médicas' }
   },
   {

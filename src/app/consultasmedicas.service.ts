@@ -68,6 +68,14 @@ export class ConsultasmedicasService {
     }).catch(this.handleError);;
   }
 
+  leerCita(idcita): Promise<String> {
+    const url = `${this._dataIdUrl}/cita/idcita/${idcita}`;
+    console.log("--- leerCita url "+url);
+    return this._http.get(url).toPromise().then(response => {
+      return (response.json());
+    }).catch(this.handleError);;
+  }
+
   sendCita(datos): Promise<String> {
     const url = `${this._dataIdUrl}/cita/`;
     console.log("--- sendCita url "+url);
