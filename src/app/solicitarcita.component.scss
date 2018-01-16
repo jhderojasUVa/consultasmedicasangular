@@ -1,0 +1,30 @@
+.subrayado {
+  border-bottom: 1px dotted #e9e9e9;
+  font-weight: 200;
+  font-variant: small-caps;
+}
+
+.huecos_dia {
+  h3.fecha {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  ul.listado_horas {
+    margin: 0 5px;
+    padding: 0;
+  }
+
+  li.hora {
+    margin: 5px 0;
+    float: left;
+    list-style-type: none;
+    border-left: 2px solid #ff9d10;
+    border-right: 2px solid #ff9d10;
+    padding: 0px 5px;
+    &:hover {
+      cursor: pointer;
+      background-color: #ff8d10;
+    }
+  }
+}

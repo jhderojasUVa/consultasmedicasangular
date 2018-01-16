@@ -1,5 +1,9 @@
 # Consultasmedicasangular
 
+Consultas medicas Angular is an application that allows the reservation of medical appointment for the University of Valladolid.
+
+Based on Angular 5.2 and Web Services.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
 
 ## Development server

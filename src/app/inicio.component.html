@@ -1,12 +1,11 @@
 <!-- Spinner -->
 <div *ngIf="spinner"  class="grid-container">
-  <div class="grid-x grid-padding-x ">
-    <div class="cell">
-      <p>Cargando datos... Espere por favor</p>
+  <div class="row">
+    <div class="small-12 columns">
+      <p><img src="../assets/img/waiting.gif" alt="Cargando..." /> Cargando datos... Espere por favor...</p>
     </div>
   </div>
 </div>
-<div *ngIf="textos"  class="grid-x grid-padding-x ">
-  <div class="cell" [innerHtml]="textos.textos.bienvenida_text">
-  </div>
+<div *ngIf="textos"  class="grid-container">
+  <div class="row columns inicio" [innerHtml]="textos.textos.bienvenida_text">
 </div>

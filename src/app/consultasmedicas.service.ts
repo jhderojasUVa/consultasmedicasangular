@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ConsultasmedicasService {
   //private _dataIdUrl = 'http://albergueweb1.uva.es/consultasmedicasweb/index.php/ws/';
-  private _dataIdUrl = 'http://davidrod.uva.es/consultasmedicasweb/index.php/ws/';
+  private _dataIdUrl = 'http://consultasmedicas.uva.es/index.php/ws/';
 
 
   public lastSearch: String;

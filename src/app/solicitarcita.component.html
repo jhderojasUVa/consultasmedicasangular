@@ -7,18 +7,18 @@
 
 <!-- Spinner -->
 <div *ngIf="spinner"  class="grid-container">
-  <div class="grid-x grid-padding-x ">
-    <div class="cell">
-      <p>Cargando datos... Espere por favor</p>
+  <div class="row">
+    <div class="small-12 text-center cell">
+      <p><img src="../assets/img/waiting.gif" alt="Cargando..." /> Cargando datos... Espere por favor...</p>
     </div>
   </div>
 </div>
 
 <!-- Desplegable gabinetes -->
 <div  *ngIf="progreso.paso == 1" class="grid-container">
-  <div *ngIf="datos" class="grid-x grid-padding-x ">
-    <div class="cell">
-      <label>Seleccione el gabinete médico en el que desea solicitar cita  </label>
+  <div *ngIf="datos" class="row">
+    <div class="small-12 cell">
+      <label>Seleccione el gabinete médico en el que desea solicitar cita</label>
       <select [(ngModel)]="gabinete">
         <option *ngFor="let gabinete of datos.gabinetes" [ngValue]="gabinete">
           {{gabinete.nombre}}
@@ -27,8 +27,8 @@
     </div>
   </div>
   <!-- Datos del gabinete -->
-  <div *ngIf="gabinete" class="grid-x grid-padding-x ">
-    <div class="cell">
+  <div *ngIf="gabinete" class="row">
+    <div class="small-12 cell">
       <div class="card">
         <div class="card-divider">
           <h4>{{gabinete.nombre}}</h4>
@@ -67,31 +67,33 @@
 
 <!--Huecos del gabinete -->
 <div *ngIf="progreso.paso == 2 && huecos"  class="grid-container">
-  <div class="grid-x grid-padding-x ">
-    <div class="cell">
-      <h3>Pulsa en la hora que deseas para la cita</h3>
+  <div class="row">
+    <div class="small-12 cell">
+      <h2 class="subrayado">Pulsa en la hora que deseas para la cita</h2>
     </div>
   </div>
-  <div *ngFor="let dia of huecos" class="grid-x grid-padding-x ">
+  <div *ngFor="let dia of huecos" class="huecos_dia row">
     <div class="cell small-12">
-      <p>{{dia.dia}}</p>
+      <h3 class="fecha">{{dia.dia}}</h3>
     </div>
-    <div *ngFor="let dia of huecos">
-      <div *ngFor="let hueco of dia.huecos" >
-        <p (click)="onSelectFecha(dia,hueco)">{{hueco.horastr}}</p>
-      </div>
+    <div>
+      <ul class="listado_horas">
+        <div *ngFor="let hueco of dia.huecos" style="float: left; padding-left: 2px; padding-right: 2px;">
+          <li class="hora" (click)="onSelectFecha(dia,hueco)">{{hueco.horastr}}</li>
+        </div>
+      </ul>
     </div>
   </div>
-</div>
+</div> <!-- fin de los huecos -->
 
 <!-- Datos de la cita -->
 <div *ngIf="progreso.paso == 3 && hueco" class="grid-container">
-  <div class="grid-x grid-padding-x ">
-    <div class="cell">
+  <div class="row">
+    <div class="small-12 cell">
       <h4>Rellene los siguientes datos</h4>
     </div>
   </div>
-  <div class="grid-x grid-padding-x ">
+  <div class="row">
     <form class="form-horizontal" [formGroup]="datosForm" (ngSubmit)="onFormSubmit()" >
     <div class="medium-6 cell">
       <label>NIF/NIE/Pasaporte
@@ -145,9 +147,11 @@
       <p>Form value {{ datosForm.value | json }} </p>
       <p> Form status {{ datosForm.status | json}} </p>
     </div>
-    <div>
-      <button type="button" class="button primary" (click)="onAnteriorToHuecos()">Anterior</button>
-      <button type="submit" class="button primary" [disabled]="!datosForm.valid" >Siguiente</button>
+    <div class="row">
+      <div class="small-12 cell text-center">
+        <button type="button" class="button primary" (click)="onAnteriorToHuecos()">Anterior</button>
+        <button type="submit" class="button primary" [disabled]="!datosForm.valid" >Siguiente</button>
+      </div>
     </div>
   </form>
   </div>
@@ -155,13 +159,13 @@
 
 <!-- Resumen de la cita -->
 <div *ngIf="progreso.paso == 4 && formulario"  class="grid-container">
-  <div class="grid-x grid-padding-x ">
-    <div class="cell">
+  <div class="row">
+    <div class="small-12 cell">
       <h4>Resumen de la cita</h4>
       <p>Compruebe la información y si está correcto pulse Confirmar</p>
     </div>
   </div>
-  <div class="grid-x grid-padding-x ">
+  <div class="row">
     <div class="card">
       <div class="card-divider">
         <h4>{{gabinete.nombre}}</h4>
@@ -180,13 +184,13 @@
       </div>
     </div>
   </div>
-  <div class="grid-x grid-padding-x ">
-    <div class="cell">
+  <div class="row">
+    <div class="small-12 cell">
       <h4>Día {{hueco.dia}}</h4>
       <h4>Hora {{hueco.horastr}}</h4>
     </div>
   </div>
-  <div class="grid-x grid-padding-x ">
+  <div class="row">
     <div class="cell">
 
 
@@ -196,7 +200,7 @@
 
 <!-- Resultado de la cita -->
 <div *ngIf="progreso.paso == 5 && resultado"  class="grid-container">
-  <div class="grid-x grid-padding-x ">
+  <div class="row">
     <div class="cell" *ngIf="resultado.status == 0" [innerHtml]="datos.textos.citaasignada_text"></div>
     <div class="cell" *ngIf="resultado.status == 1" [innerHtml]="datos.textos.nohaycita_text"></div>
     <div class="cell">
@@ -207,14 +211,14 @@
 </div>
 
 <!-- PASO 1. seleccionar gabinete -->
-<div *ngIf="progreso.paso == 1" class="grid-x grid-padding-x ">
+<div *ngIf="progreso.paso == 1" class="row">
   <div class="cell">
     <button id="siguientetohuecos" type="button" class="button primary" [disabled]="!gabinete" (click)="onSelectGabineteToHuecos()">Siguiente</button>
   </div>
 </div>
 
 <!-- PASO 2. Seleccionar huecos -->
-<div *ngIf="progreso.paso == 2" class="grid-x grid-padding-x ">
+<div *ngIf="progreso.paso == 2" class="row">
   <div class="cell">
     <button id="anteriortogabinete" type="button" class="button primary" (click)="onAnteriorToGabinete()">Anterior</button>
     <button id="siguientetodatos" type="button" class="button primary" [disabled]="!hueco" (click)="onSelectHuecoToDatos()">Siguiente</button>
@@ -224,7 +228,7 @@
 <!-- PASO 3. completar datos EN FORMULARIO -->
 
 <!-- PASO 4. completar datos EN FORMULARIO -->
-<div *ngIf="progreso.paso == 4" class="grid-x grid-padding-x ">
+<div *ngIf="progreso.paso == 4" class="row">
   <div class="cell">
     <button #anteriortodatos type="button" class="button primary" (click)="onAnteriorToDatos()">Anterior</button>
     <button  type="button" class="button primary" (click)="onConfirmarCita()">Solicitar cita</button>
