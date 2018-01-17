@@ -24,7 +24,7 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14",
-    "foundation-sites": "^6.4.4-rc1"4
+    "foundation-sites": "^6.4.4-rc1"
   },
   "devDependencies": {
     "@angular/cli": "1.6.0",
